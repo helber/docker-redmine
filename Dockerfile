@@ -27,6 +27,15 @@ ADD assets/config/ /app/setup/config/
 ADD assets/init /app/init
 RUN chmod 755 /app/init
 
+
+RUN apt-get update \
+ && apt-get install -y \
+      cmake \
+      uuid-dev \
+ && update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX \
+ && gem install --no-document bundler \
+ && rm -rf /var/lib/apt/lists/* # 20150604
+
 EXPOSE 80
 EXPOSE 443
 
